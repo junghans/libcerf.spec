@@ -1,6 +1,6 @@
 Name:		libcerf
 Version:	1.9
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
@@ -64,6 +64,9 @@ make test1
 
 
 %changelog
+* Fri Nov  2 2018 José Matos <jamatos@fedoraproject.org> - 1.9-2
+- rebuild for all the supported releases
+
 * Fri Oct 19 2018 José Matos <jamatos@fedoraproject.org> - 1.9-1
 - update to 1.9
 
