@@ -1,6 +1,6 @@
 Name:		libcerf
-Version:	1.9
-Release:	3%{?dist}
+Version:	1.11
+Release:	1%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
@@ -32,7 +32,8 @@ developing applications that use %{name}.
 %autosetup
 # Force cmake to use the paths passed at configure time
 sed -i -e 's|${destination}/lib|${LIB_INSTALL_DIR}|' lib/CMakeLists.txt
-sed -i -e 's|CMAKE_INSTALL_PREFIX|SHARE_INSTALL_PREFIX|' man/CMakeLists.txt
+sed -i -e 's|${destination}/lib|${LIB_INSTALL_DIR}|' CMakeLists.txt
+sed -i -e 's|${prefix}/lib|@LIB_INSTALL_DIR@|' libcerf.pc.in
 
 
 %build
@@ -46,6 +47,9 @@ mkdir build; cd build
 cd build
 %make_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+# Move the documentation to the devel package
+mv $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}-devel
+
 
 %check
 cd build
@@ -59,11 +63,18 @@ make test1
 
 %files devel
 %{_mandir}/man3/*
+%{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
 %{_libdir}/*.so
+%{_datadir}/doc/%{name}-devel/
 
 
 %changelog
+* Sat Dec 29 2018 José Matos <jamatos@fedoraproject.org> - 1.11-1
+- update to 1.11
+- adds html documentation to the devel subpackage
+- adds a pkgconfig .pc file
+
 * Fri Nov  2 2018 José Matos <jamatos@fedoraproject.org> - 1.9-3
 - build for all available fedora releases
 
