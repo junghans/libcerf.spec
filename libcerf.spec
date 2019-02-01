@@ -1,6 +1,6 @@
 Name:		libcerf
 Version:	1.11
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
@@ -70,6 +70,9 @@ make test1
 
 
 %changelog
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.11-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sat Dec 29 2018 José Matos <jamatos@fedoraproject.org> - 1.11-1
 - update to 1.11
 - adds html documentation to the devel subpackage
