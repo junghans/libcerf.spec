@@ -29,7 +29,7 @@ developing applications that use %{name}.
 
 
 %prep
-%autosetup
+%setup -q -n %{name}-v%{version}
 # Force cmake to use the paths passed at configure time
 sed -i -e 's|${destination}/lib|${LIB_INSTALL_DIR}|' lib/CMakeLists.txt
 sed -i -e 's|${destination}/lib|${LIB_INSTALL_DIR}|' CMakeLists.txt
@@ -53,7 +53,7 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}/html $RPM_BUILD_ROOT/%{_datadir}/doc/
 
 %check
 cd build
-make test1
+make cerftest
 
 
 %files
@@ -72,6 +72,7 @@ make test1
 %changelog
 * Wed Apr 17 2019 José Matos <jamatos@fedoraproject.org> - 1.13-1
 - update to 1.13
+- update homepage and source urls
 
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.11-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
