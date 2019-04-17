@@ -1,11 +1,11 @@
 Name:		libcerf
-Version:	1.11
-Release:	2%{?dist}
+Version:	1.13
+Release:	1%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
-URL:            http://apps.jcns.fz-juelich.de/doku/sc/libcerf
-Source0:        http://apps.jcns.fz-juelich.de/src/libcerf/%{name}-%{version}.tgz
+URL:            https://jugit.fz-juelich.de/mlz/libcerf
+Source0:        https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v%{version}/%{name}-v%{version}.tar.gz
 
 BuildRequires:  gcc
 BuildRequires:  pkgconfig
@@ -70,6 +70,9 @@ make test1
 
 
 %changelog
+* Wed Apr 17 2019 José Matos <jamatos@fedoraproject.org> - 1.13-1
+- update to 1.13
+
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.11-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
