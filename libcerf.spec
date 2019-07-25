@@ -1,6 +1,6 @@
 Name:		libcerf
 Version:	1.13
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
@@ -70,6 +70,9 @@ make cerftest
 
 
 %changelog
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.13-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Wed Apr 17 2019 José Matos <jamatos@fedoraproject.org> - 1.13-1
 - update to 1.13
 - update homepage and source urls
