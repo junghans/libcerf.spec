@@ -35,10 +35,10 @@ developing applications that use %{name}.
 %prep
 %setup -q -n %{name}-v%{version}
 # Force cmake to use the paths passed at configure time
-sed -i -e 's|${destination}/lib|${LIB_INSTALL_DIR}|' lib/CMakeLists.txt
-sed -i -e 's|${destination}/lib|${LIB_INSTALL_DIR}|' CMakeLists.txt
 sed -i -e 's|${prefix}/lib|@LIB_INSTALL_DIR@|' libcerf.pc.in
 
+# remove cruft
+rm -rf fortran/__MACOSX
 
 %build
 %cmake
@@ -57,8 +57,8 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}/html $RPM_BUILD_ROOT/%{_datadir}/doc/
 
 
 %files
-%license COPYING
-%doc README
+%license LICENSE
+%doc README.md
 %{_libdir}/*.so.1*
 
 %files devel
