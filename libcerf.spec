@@ -35,6 +35,8 @@ developing applications that use %{name}.
 %prep
 %setup -q -n %{name}-v%{version}
 # Force cmake to use the paths passed at configure time
+sed -i -e 's|lib/pkgconfig/|%{_lib}/pkgconfig/|' CMakeLists.txt
+sed -i -e 's|DESTINATION lib|DESTINATION %{_lib}|' lib/CMakeLists.txt
 sed -i -e 's|${prefix}/lib|@LIB_INSTALL_DIR@|' libcerf.pc.in
 
 # remove cruft
