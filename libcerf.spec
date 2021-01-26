@@ -1,6 +1,6 @@
 Name:		libcerf
 Version:	1.14
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
@@ -72,6 +72,9 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}/html $RPM_BUILD_ROOT/%{_datadir}/doc/
 
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.14-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Mon Jan  4 2021 José Matos <jamatos@fedoraproject.org> - 1.14-1
 - update to 1.14 (version 2.0 has been withdrawn) so this is the latest
 
