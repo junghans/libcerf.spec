@@ -1,11 +1,14 @@
 Name:		libcerf
-Version:	1.14
-Release:	3%{?dist}
+Version:	1.17
+Release:	1%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
 URL:            https://jugit.fz-juelich.de/mlz/libcerf
 Source0:        https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v%{version}/%{name}-v%{version}.tar.gz
+# add cmake export for consumers e.g. libecpint
+# https://jugit.fz-juelich.de/mlz/libcerf/-/merge_requests/2
+Patch0:         https://jugit.fz-juelich.de/mlz/libcerf/-/merge_requests/2.patch
 
 %if (0%{?rhel} || (0%{?fedora} && 0%{?fedora} < 33))
 %undefine __cmake_in_source_build
@@ -34,6 +37,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n %{name}-v%{version}
+%patch0 -p1
 # Force cmake to use the paths passed at configure time
 sed -i -e 's|lib/pkgconfig/|%{_lib}/pkgconfig/|' CMakeLists.txt
 sed -i -e 's|DESTINATION lib|DESTINATION %{_lib}|' lib/CMakeLists.txt
@@ -51,7 +55,7 @@ rm -rf fortran/__MACOSX
 %cmake_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 # Move the documentation to the devel package
-mv $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}-devel
+mv $RPM_BUILD_ROOT/%{_datadir}/doc/cerf/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}-devel
 
 
 %check
@@ -69,9 +73,13 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/%{name}/html $RPM_BUILD_ROOT/%{_datadir}/doc/
 %{_includedir}/*
 %{_libdir}/*.so
 %{_datadir}/doc/%{name}-devel/
+%{_datadir}/cmake/cerf
 
 
 %changelog
+* Mon Dec 06 2021 Christoph Junghans <junghans@lanl.gov> - 1.17-1
+- Version bump to v1.17
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.14-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
