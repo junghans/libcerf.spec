@@ -1,14 +1,12 @@
-Name:		libcerf
-Version:	1.17
-Release:	2%{?dist}
+Name:           libcerf
+Version:        2.1
+%global         sover 2
+Release:        1%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
 URL:            https://jugit.fz-juelich.de/mlz/libcerf
 Source0:        https://jugit.fz-juelich.de/mlz/libcerf/-/archive/v%{version}/%{name}-v%{version}.tar.gz
-# add cmake export for consumers e.g. libecpint
-# https://jugit.fz-juelich.de/mlz/libcerf/-/merge_requests/2
-Patch0:         https://jugit.fz-juelich.de/mlz/libcerf/-/merge_requests/2.patch
 
 %if (0%{?rhel} || (0%{?fedora} && 0%{?fedora} < 33))
 %undefine __cmake_in_source_build
@@ -37,11 +35,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n %{name}-v%{version}
-%patch0 -p1
-# Force cmake to use the paths passed at configure time
-sed -i -e 's|lib/pkgconfig/|%{_lib}/pkgconfig/|' CMakeLists.txt
-sed -i -e 's|DESTINATION lib|DESTINATION %{_lib}|' lib/CMakeLists.txt
-sed -i -e 's|${prefix}/lib|@LIB_INSTALL_DIR@|' libcerf.pc.in
 
 # remove cruft
 rm -rf fortran/__MACOSX
@@ -65,7 +58,7 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/cerf/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{n
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/*.so.1*
+%{_libdir}/*.so.%{sover}*
 
 %files devel
 %{_mandir}/man3/*
@@ -73,10 +66,13 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/cerf/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{n
 %{_includedir}/*
 %{_libdir}/*.so
 %{_datadir}/doc/%{name}-devel/
-%{_datadir}/cmake/cerf
+%{_libdir}/cmake/cerf
 
 
 %changelog
+* Sun Apr 10 2022 Christoph Junghans <junghans@lanl.gov> - 2.1-1
+- Version bump to v2.1 (bug #2073559)
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.17-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
