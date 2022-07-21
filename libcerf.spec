@@ -1,7 +1,7 @@
 Name:           libcerf
 Version:        2.1
 %global         sover 2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A library that provides complex error functions
 
 License:        MIT
@@ -70,6 +70,9 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/cerf/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{n
 
 
 %changelog
+* Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 2.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Sun Apr 10 2022 Christoph Junghans <junghans@lanl.gov> - 2.1-1
 - Version bump to v2.1 (bug #2073559)
 
