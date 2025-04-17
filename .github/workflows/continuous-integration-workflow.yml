@@ -26,4 +26,4 @@ jobs:
           spectool -g libcerf.spec
           fedpkg srpm
       - name: Build rpm
-        run: fedpkg local
+        run: fedpkg mockbuild
