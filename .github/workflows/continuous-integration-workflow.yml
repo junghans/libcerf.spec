@@ -27,4 +27,4 @@ jobs:
           spectool -g libcerf.spec
           fedpkg srpm
       - name: Build rpm
-        run: fedpkg mockbuild
+        run: fedpkg mockbuild --mock-config fedora-42-s390x.cfg
