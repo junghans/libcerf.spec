@@ -22,6 +22,8 @@ jobs:
       - name: Build fedpkg
         run: sudo dnf -y install fedpkg
       - name: Make SRPM
-        run: fedpkg srpm
+        run: |
+          spectool -g libcerf.spec
+          fedpkg srpm
       - name: Build rpm
         run: fedpkg local
