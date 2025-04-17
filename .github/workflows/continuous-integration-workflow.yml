@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: registry.fedoraproject.org/fedora:latest
+      options: --privileged
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
