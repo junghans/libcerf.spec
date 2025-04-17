@@ -28,4 +28,4 @@ jobs:
           fedpkg srpm
           ls /etc/mock
       - name: Build rpm
-        run: fedpkg mockbuild --mock-config fedora-42-s390x.cfg
+        run: fedpkg mockbuild --mock-config /etc/mock/fedora-42-s390x.cfg
