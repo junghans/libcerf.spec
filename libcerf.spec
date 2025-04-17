@@ -1,5 +1,5 @@
 Name:           libcerf
-Version:        2.4
+Version:        2.5
 %global         sover 2
 Release:        1%{?dist}
 Summary:        A library that provides complex error functions
@@ -68,6 +68,9 @@ mv $RPM_BUILD_ROOT/%{_datadir}/doc/cerf/html $RPM_BUILD_ROOT/%{_datadir}/doc/%{n
 
 
 %changelog
+* Thu Apr 17 2025 Christoph Junghans <junghans@votca.org> - 2.5-1
+- Version bump v2.5 (bug #228557)
+
 * Wed Apr 16 2025 Christoph Junghans <junghans@votca.org> - 2.4-1
 - Version bump v2.4 (bug #228557)
 
