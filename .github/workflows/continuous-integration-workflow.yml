@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches:
+      - rawhide
+  pull_request:
+    branches:
+      - rawhide
+
+concurrency:
+  group: ${ {github.event_name }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true 
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.fedoraproject.org/fedora:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build fedpkg
+        run: sudo dnf -y install fedpkg
+      - name: Make SRPM
+        run: fedpkg srpm
+      - name: Build rpm
+        run: fedpkg local
