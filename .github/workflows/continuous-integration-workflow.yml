@@ -15,16 +15,14 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     container:
-      image: registry.fedoraproject.org/fedora:latest
+      image: registry.fedoraproject.org/fedora:rawhide
       options: --privileged
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build fedpkg
-        run: sudo dnf -y install fedpkg
+      - name: Install fedpkg
+        run: dnf -y install fedpkg
       - name: Download source
         run: spectool -g libcerf.spec
-      - name: Make SRPM
-        run:  fedpkg srpm
       - name: Build rpm
         run: fedpkg mockbuild --mock-config /etc/mock/fedora-rawhide-s390x.cfg
