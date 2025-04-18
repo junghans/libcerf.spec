@@ -22,10 +22,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Build fedpkg
         run: sudo dnf -y install fedpkg
+      - name: Download source
+        run: spectool -g libcerf.spec
       - name: Make SRPM
-        run: |
-          spectool -g libcerf.spec
-          fedpkg srpm
-          ls /etc/mock
+        run:  fedpkg srpm
       - name: Build rpm
-        run: fedpkg mockbuild --srpm-mock --mock-config /etc/mock/fedora-rawhide-s390x.cfg
+        run: fedpkg mockbuild --mock-config /etc/mock/fedora-rawhide-s390x.cfg
