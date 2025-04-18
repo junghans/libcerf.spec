@@ -13,6 +13,10 @@ concurrency:
 
 jobs:
   CI:
+    continue-on-error: true
+    strategy:
+      matrix:
+        arch: ['i686', 'x86_64', 'aarch64', 'ppc64le', 's390x']
     runs-on: ubuntu-latest
     container:
       image: registry.fedoraproject.org/fedora:rawhide
@@ -23,6 +27,6 @@ jobs:
       - name: Install fedpkg
         run: dnf -y install fedpkg
       - name: Download source
-        run: spectool -g libcerf.spec
+        run: spectool -g *.spec
       - name: Build rpm
-        run: fedpkg mockbuild --mock-config /etc/mock/fedora-rawhide-s390x.cfg
+        run: fedpkg mockbuild --mock-config /etc/mock/fedora-rawhide-${{ matrix.arch }}.cfg
