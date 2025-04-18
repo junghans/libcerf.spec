@@ -16,7 +16,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        arch: ['i686', 'x86_64', 'aarch64', 'ppc64le', 's390x']
+        arch: ['i386', 'x86_64', 'aarch64', 'ppc64le', 's390x']
     runs-on: ubuntu-latest
     container:
       image: registry.fedoraproject.org/fedora:rawhide
@@ -29,4 +29,4 @@ jobs:
       - name: Download source
         run: spectool -g *.spec
       - name: Build rpm
-        run: fedpkg mockbuild --mock-config /etc/mock/fedora-rawhide-${{ matrix.arch }}.cfg -- --old-chroot
+        run: fedpkg mockbuild --mock-config /etc/mock/fedora-rawhide-${{ matrix.arch }}.cfg -- --isolation=simple
