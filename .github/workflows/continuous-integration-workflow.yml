@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         arch: ['i386', 'x86_64', 'aarch64', 'ppc64le', 's390x']
-    runs-on: ${{ matrix.config.arch == 'aarch64' && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'aarch64' && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
     container:
       image: registry.fedoraproject.org/fedora:rawhide
       options: --privileged
